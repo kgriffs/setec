@@ -21,7 +21,7 @@ import nacl.signing
 import nacl.utils
 
 
-class Signer(object):
+class Signer:
     """Message signer based on Ed25519 and nacl.signing.
 
     Arguments:
@@ -66,7 +66,7 @@ class Signer(object):
         return self.signb(packed)
 
 
-class Verifier(object):
+class Verifier:
     """Signature verifier based on Ed25519 and nacl.signing.
 
     Arguments:
@@ -97,7 +97,7 @@ class Verifier(object):
         return msgpack.unpackb(packed, encoding='utf-8')
 
 
-class BlackBox(object):
+class BlackBox:
     """Encryption engine based on PyNaCl's SecretBox (Salsa20/Poly1305).
 
     Warning per the SecretBox docs:
