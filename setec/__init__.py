@@ -20,6 +20,8 @@ import nacl.secret
 import nacl.signing
 import nacl.utils
 
+from .version import __version__  # NOQA
+
 
 class Signer:
     """Message signer based on Ed25519 and nacl.signing.
@@ -94,7 +96,7 @@ class Verifier:
 
     def unpackb(self, packed):
         packed = self.verifyb(packed)
-        return msgpack.unpackb(packed, encoding='utf-8')
+        return msgpack.unpackb(packed, raw=False, encoding='utf-8')
 
 
 class BlackBox:
@@ -164,4 +166,4 @@ class BlackBox:
             ciphertext = verifier.verifyb(ciphertext)
 
         data = self._box.decrypt(ciphertext)
-        return msgpack.unpackb(data, encoding='utf-8')
+        return msgpack.unpackb(data, raw=False, encoding='utf-8')
